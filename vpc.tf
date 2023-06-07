@@ -18,3 +18,14 @@ resource "aws_subnet" "aws-big-pubsubnet-A" {
     Name = "aws-big-pubsubnet-A"
   }
 }
+# create subnet public-B
+resource "aws_subnet" "aws-big-pubsubnet-B" {
+  vpc_id     = aws_vpc.aws-big-vpc.id
+  availability_zone = "eu-north-1a"
+  map_public_ip_on_launch = "true"
+  cidr_block = "10.0.16.0/20"
+
+  tags = {
+    Name = "aws-big-pubsubnet-B"
+  }
+}
