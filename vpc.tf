@@ -40,3 +40,14 @@ resource "aws_subnet" "aws-big-pvtsubnet-A" {
     Name = "aws-big-pvtsubnet-A"
   }
 }
+# create subnet private-B
+resource "aws_subnet" "aws-big-pvtsubnet-B" {
+  vpc_id     = aws_vpc.aws-big-vpc.id
+  availability_zone = "eu-north-1a"
+  map_public_ip_on_launch = "true"
+  cidr_block = "10.0.48.0/20"
+
+  tags = {
+    Name = "aws-big-pvtsubnet-B"
+  }
+}
