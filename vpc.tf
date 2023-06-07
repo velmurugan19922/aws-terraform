@@ -34,7 +34,7 @@ resource "aws_subnet" "aws-big-pvtsubnet-A" {
   vpc_id     = aws_vpc.aws-big-vpc.id
   availability_zone = "eu-north-1a"
   map_public_ip_on_launch = "true"
-  cidr_block = "10.0.0.0/20"
+  cidr_block = "10.0.32.0/20"
 
   tags = {
     Name = "aws-big-pvtsubnet-A"
