@@ -51,3 +51,11 @@ resource "aws_subnet" "aws-big-pvtsubnet-B" {
     Name = "aws-big-pvtsubnet-B"
   }
 }
+# create internet gateway
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.aws-big-vpc.id
+
+  tags = {
+    Name = "big-igw"
+  }
+}
