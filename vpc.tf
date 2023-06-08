@@ -33,7 +33,7 @@ resource "aws_subnet" "aws-big-pubsubnet-B" {
 resource "aws_subnet" "aws-big-pvtsubnet-A" {
   vpc_id     = aws_vpc.aws-big-vpc.id
   availability_zone = "eu-north-1a"
-  map_public_ip_on_launch = "flase"
+  map_public_ip_on_launch = "false"
   cidr_block = "10.0.32.0/20"
 
   tags = {
@@ -44,7 +44,7 @@ resource "aws_subnet" "aws-big-pvtsubnet-A" {
 resource "aws_subnet" "aws-big-pvtsubnet-B" {
   vpc_id     = aws_vpc.aws-big-vpc.id
   availability_zone = "eu-north-1a"
-  map_public_ip_on_launch = "flase"
+  map_public_ip_on_launch = "false"
   cidr_block = "10.0.48.0/20"
 
   tags = {
@@ -57,5 +57,30 @@ resource "aws_internet_gateway" "igw" {
 
   tags = {
     Name = "big-igw"
+  }
+}
+
+# create public route table
+
+resource "aws_route_table" "big-pubrt" {
+  vpc_id = aws_vpc.aws-big-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "big-pubrt"
+  }
+}
+
+#create public route table
+
+resource "aws_route_table" "big-pvtrt" {
+  vpc_id = aws_vpc.aws-big-vpc.id
+
+  tags = {
+    Name = "big-pvtrt"
   }
 }
